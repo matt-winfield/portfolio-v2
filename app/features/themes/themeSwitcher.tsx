@@ -16,7 +16,7 @@ export const ThemeSwitch = () => {
     };
 
     return (
-        <Button onClick={onClick} variant="ghost">
+        <Button onClick={onClick} variant="ghost" size="sm">
             {modeLabel[theme]}
         </Button>
     );
