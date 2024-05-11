@@ -1,5 +1,4 @@
-import { GeneralErrorBoundary } from '@/components/errorBoundary';
-import { Link, Outlet, useLocation } from '@remix-run/react';
+import { Link, Outlet } from '@remix-run/react';
 import { ChevronLeft } from 'lucide-react';
 
 const ArticleLayout = () => {

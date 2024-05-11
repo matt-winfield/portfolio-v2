@@ -28,7 +28,7 @@ export const ArticleSummary = ({ article }: ArticleSummaryProps) => {
                     {article.description}
                 </div>
             )}
-            {article.tags && <TagList tags={article.tags} />}
+            {article.tags && <TagList tags={article.tags} className="mt-2" />}
         </Link>
     );
 };

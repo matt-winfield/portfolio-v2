@@ -14,6 +14,7 @@ const StyledNavLink = ({
                     <motion.div
                         layoutId="nav-highlight"
                         style={{ borderRadius: 9999 }}
+                        transition={{ duration: 0.2 }}
                         className="absolute left-0 top-0 -z-10 h-full w-full bg-accent-foreground dark:z-10 dark:bg-primary dark:mix-blend-difference"
                     />
                 )}
