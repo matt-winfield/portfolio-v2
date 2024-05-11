@@ -7,7 +7,6 @@ import {
     useMatches,
     useOutlet,
 } from '@remix-run/react';
-import globalsStylesheetUrl from './styles/globals.css?url';
 import tailwindStylesheetUrl from './styles/tailwind.css?url';
 import fontsStylesheetUrl from './styles/fonts.css?url';
 import { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
@@ -20,7 +19,6 @@ import { ThemeProvider, useTheme } from './features/themes/themeProvider';
 
 export const links: LinksFunction = () => {
     return [
-        { rel: 'stylesheet', href: globalsStylesheetUrl, as: 'style' },
         { rel: 'stylesheet', href: tailwindStylesheetUrl, as: 'style' },
         { rel: 'stylesheet', href: fontsStylesheetUrl, as: 'style' },
     ].filter(Boolean);
