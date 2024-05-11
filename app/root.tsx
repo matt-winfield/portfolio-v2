@@ -1,9 +1,11 @@
 import {
+    Link,
     Links,
     Meta,
     Scripts,
     ScrollRestoration,
     useLoaderData,
+    useLocation,
     useMatches,
     useOutlet,
 } from '@remix-run/react';
@@ -16,6 +18,8 @@ import { Footer } from './features/footer';
 import { ThemeSwitch } from './features/themes/themeSwitcher';
 import { getTheme } from './features/themes/themeUtils';
 import { ThemeProvider, useTheme } from './features/themes/themeProvider';
+import { GeneralErrorBoundary } from './components/errorBoundary';
+import { ChevronLeft } from 'lucide-react';
 
 export const links: LinksFunction = () => {
     return [
@@ -56,7 +60,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 
 const Header = () => {
     const matches = useMatches();
-    const isOnIndexPage = matches.find((m) => m.id === 'routes/_index');
+    const isOnIndexPage = matches.find((m) => m.id === 'routes/index');
 
     return (
         <header
@@ -91,7 +95,7 @@ export default function App() {
     const { theme } = useLoaderData<typeof loader>();
     const matches = useMatches();
     const outlet = useOutlet();
-    const isOnIndexPage = matches.find((m) => m.id === 'routes/_index');
+    const isOnIndexPage = matches.find((m) => m.id === 'routes/index');
 
     return (
         <ThemeProvider initialTheme={theme}>
@@ -103,5 +107,29 @@ export default function App() {
                 </div>
             </Layout>
         </ThemeProvider>
+    );
+}
+
+export function ErrorBoundary() {
+    const location = useLocation();
+    return (
+        <GeneralErrorBoundary
+            statusHandlers={{
+                404: () => (
+                    <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-3">
+                            <h1>We can&apos;t find this page:</h1>
+                            <pre className="whitespace-pre-wrap break-all text-body-lg">
+                                {location.pathname}
+                            </pre>
+                        </div>
+                        <Link to="/" className="flex gap-1">
+                            <ChevronLeft />
+                            <span>Back to home</span>
+                        </Link>
+                    </div>
+                ),
+            }}
+        />
     );
 }
