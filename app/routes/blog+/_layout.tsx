@@ -25,21 +25,21 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 const mdxComponents: MDXComponents = {
-    h1: (props) => <h1 className="font-bold ttext-4xl" {...props} />,
-    h2: (props) => <h2 className="font-bold text-3xl" {...props} />,
-    h3: (props) => <h3 className="font-bold text-2xl" {...props} />,
-    h4: (props) => <h4 className="font-bold text-xl" {...props} />,
+    h1: (props) => <h1 className="text-4xl font-bold" {...props} />,
+    h2: (props) => <h2 className="text-3xl font-bold" {...props} />,
+    h3: (props) => <h3 className="text-2xl font-bold" {...props} />,
+    h4: (props) => <h4 className="text-xl font-bold" {...props} />,
     h5: (props) => <h5 className="font-bold" {...props} />,
     h6: (props) => <h6 className="font-semibold" {...props} />,
     a: (props) => <a className="text-blue-500 hover:underline" {...props} />,
-    ul: (props) => <ul className="list-disc list-inside" {...props} />,
-    ol: (props) => <ol className="list-decimal list-inside" {...props} />,
+    ul: (props) => <ul className="list-inside list-disc" {...props} />,
+    ol: (props) => <ol className="list-inside list-decimal" {...props} />,
     li: (props) => <li className="text-base" {...props} />,
     blockquote: (props) => (
         <blockquote className="border-l-4 border-gray-300 pl-2" {...props} />
     ),
-    pre: (props) => <pre className="bg-gray-800 text-white p-2" {...props} />,
-    code: (props) => <code className="bg-gray-800 text-white p-1" {...props} />,
+    pre: (props) => <pre className="bg-gray-800 p-2 text-white" {...props} />,
+    code: (props) => <code className="bg-gray-800 p-1 text-white" {...props} />,
     img: (props) => <img className="w-full" {...props} />,
 };
 

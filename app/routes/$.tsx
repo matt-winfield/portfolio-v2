@@ -34,7 +34,7 @@ export function ErrorBoundary() {
                         </div>
                         <Link
                             to="/"
-                            className="flex gap-1 text-sm items-center"
+                            className="flex items-center gap-1 text-sm"
                         >
                             <ChevronLeft />
                             <span>Back to home</span>
