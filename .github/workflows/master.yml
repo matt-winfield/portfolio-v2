@@ -1,11 +1,36 @@
-name: Playwright Tests
+name: Build and Test
 on:
     push:
         branches: [main, master]
     pull_request:
         branches: [main, master]
 jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: lts/*
+            - name: Install dependencies
+              run: npm install -g pnpm && pnpm install
+            - name: Build
+              run: pnpm build
     test:
+        name: Test
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: lts/*
+            - name: Install dependencies
+              run: npm install -g pnpm && pnpm install
+            - name: Run tests
+              run: pnpm test:coverage
+    test-e2e:
+        name: Run E2E tests
         timeout-minutes: 60
         runs-on: ubuntu-latest
         steps:
