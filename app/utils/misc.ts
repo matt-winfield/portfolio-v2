@@ -1,6 +1,7 @@
 import { extendTailwindMerge } from 'tailwind-merge';
 import { extendedTheme } from './extendedTheme';
 import clsx, { ClassValue } from 'clsx';
+import { useEffect, useRef, useState } from 'react';
 
 function formatColors() {
     const colors = [];
@@ -55,3 +56,33 @@ export function getErrorMessage(error: unknown) {
     console.error('Unable to get error message for error', error);
     return 'Unknown Error';
 }
+
+/**
+ * Hook to fade in an image when it's loaded so the "pop-in" effect is less jarring.
+ */
+export const useImageFadeIn = () => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const imageRef = useRef<HTMLImageElement>(null);
+
+    useEffect(() => {
+        // The image may already be loaded if it's cached, in which case onLoad never fires,
+        // so we need to check if it's complete when the page first loads
+        if (imageRef.current?.complete) {
+            setImageLoaded(true);
+        }
+    }, []);
+
+    const onLoad = () => {
+        setImageLoaded(true);
+    };
+
+    const imageClasses = cn('transition-opacity', !imageLoaded && 'opacity-0');
+
+    return {
+        imageRef,
+        imageClasses,
+        props: {
+            onLoad,
+        },
+    };
+};

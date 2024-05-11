@@ -3,6 +3,7 @@ import { installGlobals } from '@remix-run/node';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { flatRoutes } from 'remix-flat-routes';
+import mdx from '@mdx-js/rollup';
 
 installGlobals();
 
@@ -16,5 +17,11 @@ export default defineConfig({
             },
         }),
         tsconfigPaths(),
+        {
+            enforce: 'pre',
+            ...mdx({
+                providerImportSource: '@mdx-js/react',
+            }),
+        },
     ],
 });

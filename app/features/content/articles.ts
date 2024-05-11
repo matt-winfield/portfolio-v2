@@ -5,6 +5,7 @@ export type Article = {
     publishedAt?: Date;
     updatedAt?: Date;
     tags?: string[];
+    image?: string;
 };
 
 export const articles: Article[] = [
@@ -24,5 +25,6 @@ export const articles: Article[] = [
             'React',
             'TypeScript',
         ],
+        image: '/images/remix-translations-cover.jpg',
     },
 ];
