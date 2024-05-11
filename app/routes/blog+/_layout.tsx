@@ -4,12 +4,19 @@
 import { TagList } from '@/features/blog/tagList';
 import { articles } from '@/features/content/articles';
 import { cn, useImageFadeIn } from '@/utils/misc';
-import { LoaderFunctionArgs } from '@remix-run/node';
+import { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
 import { Link, Outlet, useLoaderData } from '@remix-run/react';
 import { format } from 'date-fns';
 import { ChevronLeft } from 'lucide-react';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXComponents } from 'node_modules/@mdx-js/react/lib';
+import syntaxHighlightingStyles from '@/styles/syntax-highlighting.css?url';
+
+export const links: LinksFunction = () => {
+    return [
+        { rel: 'stylesheet', href: syntaxHighlightingStyles, as: 'style' },
+    ].filter(Boolean);
+};
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
     const pathName = new URL(request.url).pathname;
@@ -25,22 +32,39 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 const mdxComponents: MDXComponents = {
-    h1: (props) => <h1 className="text-4xl font-bold" {...props} />,
-    h2: (props) => <h2 className="text-3xl font-bold" {...props} />,
-    h3: (props) => <h3 className="text-2xl font-bold" {...props} />,
-    h4: (props) => <h4 className="text-xl font-bold" {...props} />,
-    h5: (props) => <h5 className="font-bold" {...props} />,
-    h6: (props) => <h6 className="font-semibold" {...props} />,
-    a: (props) => <a className="text-blue-500 hover:underline" {...props} />,
+    h1: (props) => <h1 className="mb-2 mt-5 text-4xl font-bold" {...props} />,
+    h2: (props) => <h2 className="mb-2 mt-4 text-3xl font-bold" {...props} />,
+    h3: (props) => <h3 className="mb-2 mt-3 text-2xl font-bold" {...props} />,
+    h4: (props) => <h4 className="mb-2 mt-2 text-xl font-bold" {...props} />,
+    h5: (props) => <h5 className="mb-2 mt-1 font-bold" {...props} />,
+    h6: (props) => <h6 className="mb-2 mt-0.5 font-semibold" {...props} />,
+    p: (props) => <p className="my-2" {...props} />,
+    a: (props) => (
+        <a className="text-accent-foreground hover:underline" {...props} />
+    ),
     ul: (props) => <ul className="list-inside list-disc" {...props} />,
     ol: (props) => <ol className="list-inside list-decimal" {...props} />,
-    li: (props) => <li className="text-base" {...props} />,
+    li: (props) => <li {...props} />,
     blockquote: (props) => (
         <blockquote className="border-l-4 border-gray-300 pl-2" {...props} />
     ),
-    pre: (props) => <pre className="bg-gray-800 p-2 text-white" {...props} />,
-    code: (props) => <code className="bg-gray-800 p-1 text-white" {...props} />,
-    img: (props) => <img className="w-full" {...props} />,
+    pre: (props) => (
+        <pre
+            className="max-w-full overflow-x-auto rounded-lg bg-card text-foreground"
+            {...props}
+        />
+    ),
+    code: (props) => (
+        <code
+            className="w-fit rounded-lg bg-card p-1 text-foreground"
+            {...props}
+        />
+    ),
+    img: (props) => (
+        <div className="flex w-full items-center justify-center">
+            <img className="max-h-[500px] w-auto" {...props} />
+        </div>
+    ),
 };
 
 const ArticleLayout = () => {

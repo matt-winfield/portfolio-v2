@@ -4,8 +4,11 @@ import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { flatRoutes } from 'remix-flat-routes';
 import mdx from '@mdx-js/rollup';
+import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 
 installGlobals();
+
+const prettyCodeOptions: Options = {};
 
 export default defineConfig({
     plugins: [
@@ -21,6 +24,7 @@ export default defineConfig({
             enforce: 'pre',
             ...mdx({
                 providerImportSource: '@mdx-js/react',
+                rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
             }),
         },
     ],
