@@ -63,25 +63,29 @@ const Header = () => {
     const isOnIndexPage = matches.find((m) => m.id === 'routes/index');
 
     return (
-        <header
-            className={cn(
-                isOnIndexPage && 'fixed',
-                'z-10 flex w-full items-center py-6',
-            )}
-        >
-            <nav
+        <div className="w-full overflow-hidden">
+            <header
+                // The header uses w-screen instead of w-full so it doesn't resize when the (vertical) scrollbar appears (which would cause a layout shift between pages)
+                // The container has overflow-hidden to prevent the horizontal scrollbar from appearing due to this when the vertical scrollbar is visible
                 className={cn(
-                    'flex flex-1 items-center justify-between',
-                    isOnIndexPage && 'container',
+                    isOnIndexPage && 'fixed',
+                    'z-10 flex w-screen items-center py-6',
                 )}
             >
-                {isOnIndexPage && <ThemeSwitch />}
-                <div className="mx-3 min-w-0 flex-1">
-                    {!isOnIndexPage && <NavMenu />}
-                </div>
-                <div></div>
-            </nav>
-        </header>
+                <nav
+                    className={cn(
+                        'flex flex-1 items-center justify-between',
+                        isOnIndexPage && 'container',
+                    )}
+                >
+                    {isOnIndexPage && <ThemeSwitch />}
+                    <div className="mx-3 min-w-0 flex-1">
+                        {!isOnIndexPage && <NavMenu />}
+                    </div>
+                    <div></div>
+                </nav>
+            </header>
+        </div>
     );
 };
 
