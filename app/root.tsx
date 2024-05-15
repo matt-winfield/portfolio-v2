@@ -66,7 +66,7 @@ const Header = () => {
         <header
             className={cn(
                 isOnIndexPage && 'fixed',
-                'z-10 flex w-screen items-center py-6',
+                'z-10 flex w-full items-center py-6',
             )}
         >
             <nav

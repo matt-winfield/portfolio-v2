@@ -61,7 +61,7 @@ const mdxComponents: MDXComponents = {
         />
     ),
     img: (props) => (
-        <div className="flex w-full items-center justify-center">
+        <div className="m-2 flex w-full items-center justify-center">
             <img className="max-h-[500px] w-auto" {...props} />
         </div>
     ),
