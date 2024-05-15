@@ -32,19 +32,19 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 const mdxComponents: MDXComponents = {
-    h1: (props) => <h1 className="mb-2 mt-5 text-4xl font-bold" {...props} />,
-    h2: (props) => <h2 className="mb-2 mt-4 text-3xl font-bold" {...props} />,
-    h3: (props) => <h3 className="mb-2 mt-3 text-2xl font-bold" {...props} />,
-    h4: (props) => <h4 className="mb-2 mt-2 text-xl font-bold" {...props} />,
-    h5: (props) => <h5 className="mb-2 mt-1 font-bold" {...props} />,
-    h6: (props) => <h6 className="mb-2 mt-0.5 font-semibold" {...props} />,
+    h1: (props) => <h1 className="mb-4 mt-8 text-4xl font-bold" {...props} />,
+    h2: (props) => <h2 className="mb-4 mt-8 text-3xl font-bold" {...props} />,
+    h3: (props) => <h3 className="mb-4 mt-8 text-2xl font-bold" {...props} />,
+    h4: (props) => <h4 className="mb-3 mt-6 text-xl font-bold" {...props} />,
+    h5: (props) => <h5 className="mb-2 mt-6 font-bold" {...props} />,
+    h6: (props) => <h6 className="mb-1 mt-6 font-semibold" {...props} />,
     p: (props) => <p className="my-2" {...props} />,
     a: (props) => (
         <a className="text-accent-foreground hover:underline" {...props} />
     ),
-    ul: (props) => <ul className="list-inside list-disc" {...props} />,
-    ol: (props) => <ol className="list-inside list-decimal" {...props} />,
-    li: (props) => <li {...props} />,
+    ul: (props) => <ul className="list-inside list-disc pl-10" {...props} />,
+    ol: (props) => <ol className="list-inside list-decimal pl-10" {...props} />,
+    li: (props) => <li className="my-2" {...props} />,
     blockquote: (props) => (
         <blockquote className="border-l-4 border-gray-300 pl-2" {...props} />
     ),
