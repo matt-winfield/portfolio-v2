@@ -2,12 +2,24 @@ import { Button } from '@/components/ui/button';
 import { projects } from '@/features/content/projects';
 import { cn } from '@/utils/misc';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 
 const fallbackImageUrl = 'images/default-project-image.png';
 
 export default function Projects() {
     const [activeProject, setActiveProject] = useState(projects[0].slug);
+
+    const onProjectClick = (slug: string, event: MouseEvent) => {
+        setActiveProject(slug);
+        // Scroll the project button into the center if on mobile
+        if (matchMedia('(min-width: 768px)').matches) return;
+        (event.nativeEvent.target as HTMLElement | null)?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center',
+        });
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -15,17 +27,17 @@ export default function Projects() {
             transition={{ delay: 0.2 }}
             className="container flex flex-col gap-5 overflow-hidden md:flex-row"
         >
-            <div className="flex flex-col overflow-y-auto">
+            <div className="flex overflow-x-auto md:flex-col md:overflow-y-auto md:overflow-x-visible">
                 {projects.map((project) => (
                     <Button
                         key={project.slug}
                         variant="secondary"
                         className={cn(
-                            'my-1',
+                            'mx-1 md:mx-0 md:my-1',
                             activeProject === project.slug &&
                                 'text-accent-foreground',
                         )}
-                        onClick={() => setActiveProject(project.slug)}
+                        onClick={(e) => onProjectClick(project.slug, e)}
                     >
                         {project.name}
                     </Button>
