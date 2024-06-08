@@ -5,6 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import { flatRoutes } from 'remix-flat-routes';
 import mdx from '@mdx-js/rollup';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
+import svgr from 'vite-plugin-svgr';
 
 installGlobals();
 
@@ -27,5 +28,6 @@ export default defineConfig({
                 rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
             }),
         },
+        svgr(),
     ],
 });

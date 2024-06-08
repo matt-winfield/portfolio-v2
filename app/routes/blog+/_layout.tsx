@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/heading-has-content */
 import { TagList } from '@/features/blog/tagList';
 import { articles } from '@/features/content/articles';
 import { cn, useImageFadeIn } from '@/utils/misc';
@@ -8,8 +5,6 @@ import { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
 import { Link, Outlet, useLoaderData } from '@remix-run/react';
 import { format } from 'date-fns';
 import { ChevronLeft } from 'lucide-react';
-import { MDXProvider } from '@mdx-js/react';
-import { MDXComponents } from 'node_modules/@mdx-js/react/lib';
 import syntaxHighlightingStyles from '@/styles/syntax-highlighting.css?url';
 
 export const links: LinksFunction = () => {
@@ -29,42 +24,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     }
 
     return { article };
-};
-
-const mdxComponents: MDXComponents = {
-    h1: (props) => <h1 className="mb-4 mt-8 text-4xl font-bold" {...props} />,
-    h2: (props) => <h2 className="mb-4 mt-8 text-3xl font-bold" {...props} />,
-    h3: (props) => <h3 className="mb-4 mt-8 text-2xl font-bold" {...props} />,
-    h4: (props) => <h4 className="mb-3 mt-6 text-xl font-bold" {...props} />,
-    h5: (props) => <h5 className="mb-2 mt-6 font-bold" {...props} />,
-    h6: (props) => <h6 className="mb-1 mt-6 font-semibold" {...props} />,
-    p: (props) => <p className="my-2" {...props} />,
-    a: (props) => (
-        <a className="text-accent-foreground hover:underline" {...props} />
-    ),
-    ul: (props) => <ul className="list-inside list-disc pl-10" {...props} />,
-    ol: (props) => <ol className="list-inside list-decimal pl-10" {...props} />,
-    li: (props) => <li className="my-2" {...props} />,
-    blockquote: (props) => (
-        <blockquote className="border-l-4 border-gray-300 pl-2" {...props} />
-    ),
-    pre: (props) => (
-        <pre
-            className="max-w-full overflow-x-auto rounded-lg bg-card text-foreground"
-            {...props}
-        />
-    ),
-    code: (props) => (
-        <code
-            className="w-fit rounded-lg bg-card p-1 text-foreground"
-            {...props}
-        />
-    ),
-    img: (props) => (
-        <div className="m-2 flex w-full items-center justify-center">
-            <img className="max-h-[500px] w-auto" {...props} />
-        </div>
-    ),
 };
 
 const ArticleLayout = () => {
@@ -116,11 +75,9 @@ const ArticleLayout = () => {
                             />
                         </div>
                     )}
-                    <MDXProvider components={mdxComponents}>
-                        <div className="text-lg">
-                            <Outlet />
-                        </div>
-                    </MDXProvider>
+                    <div className="text-lg">
+                        <Outlet />
+                    </div>
                 </div>
             </div>
         </div>

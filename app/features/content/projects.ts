@@ -1,3 +1,27 @@
+import {
+    Technology,
+    angular,
+    csharp,
+    docker,
+    googleCloud,
+    mysql,
+    nextjs,
+    prisma,
+    react,
+    remix,
+    signalr,
+    sqlite,
+    tailwind,
+    typescript,
+} from './technologies';
+import RayTracingContent from './projects/ray-tracing.mdx';
+import ChessContent from './projects/chess.mdx';
+import QuizBuzzerContent from './projects/lockdown-buzzer.mdx';
+import ChessChallengeContent from './projects/mini-chess-bot.mdx';
+import PortfolioContent from './projects/digital-portfolio.mdx';
+import type { MDXProps } from 'mdx/types';
+import { ComponentType } from 'react';
+
 export type Project = {
     slug: string;
     name: string;
@@ -7,6 +31,8 @@ export type Project = {
         url: string;
         altText: string;
     }>;
+    content: ComponentType<MDXProps>;
+    technologies: Technology[];
 };
 
 export const projects: Project[] = [
@@ -21,6 +47,8 @@ export const projects: Project[] = [
                 altText: 'Ray tracing screenshot',
             },
         ],
+        content: RayTracingContent,
+        technologies: [typescript, react],
     },
     {
         slug: 'chess',
@@ -32,6 +60,16 @@ export const projects: Project[] = [
                 url: '/images/chess-screenshot.webp',
                 altText: 'Chess screenshot',
             },
+        ],
+        content: ChessContent,
+        technologies: [
+            typescript,
+            csharp,
+            docker,
+            angular,
+            signalr,
+            googleCloud,
+            mysql,
         ],
     },
     {
@@ -45,6 +83,8 @@ export const projects: Project[] = [
                 altText: 'Buzzer Screenshot',
             },
         ],
+        content: QuizBuzzerContent,
+        technologies: [typescript, csharp, angular, signalr],
     },
     {
         slug: 'mini-chess-bot',
@@ -57,6 +97,8 @@ export const projects: Project[] = [
                 altText: 'Chess Challenge Screenshot',
             },
         ],
+        content: ChessChallengeContent,
+        technologies: [csharp],
     },
     {
         slug: 'portfolio',
@@ -68,6 +110,17 @@ export const projects: Project[] = [
                 url: '/images/portfolio-screenshot.png',
                 altText: 'Digital portfolio screenshot',
             },
+        ],
+        content: PortfolioContent,
+        technologies: [
+            typescript,
+            react,
+            remix,
+            docker,
+            tailwind,
+            prisma,
+            sqlite,
+            nextjs,
         ],
     },
 ];
