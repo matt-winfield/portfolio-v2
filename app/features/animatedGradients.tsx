@@ -7,7 +7,7 @@ import {
 } from 'framer-motion';
 import { useEffect } from 'react';
 
-export const Hero = () => {
+export const AnimatedGradients = () => {
     const [scope, animate] = useAnimate();
     const x1 = useMotionValue(90);
     const y1 = useMotionValue(80);
@@ -68,5 +68,30 @@ export const Hero = () => {
                 </div>
             </div>
         </div>
+    );
+};
+
+export const SidebarGradient = () => {
+    const [scope, animate] = useAnimate();
+    const opacity = useMotionValue(0);
+    const background = useMotionTemplate`radial-gradient(at 100% 100%, rgba(62, 245, 220, ${opacity}), transparent 70%)`;
+
+    useEffect(() => {
+        animate(opacity, 0.3, {
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: easeInOut,
+            duration: 5,
+        });
+    }, [animate, opacity]);
+
+    return (
+        <motion.div
+            className="absolute left-0 top-0 -z-10 h-full w-full"
+            ref={scope}
+            style={{
+                background,
+            }}
+        />
     );
 };

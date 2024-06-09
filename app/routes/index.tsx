@@ -1,7 +1,10 @@
 import { forwardRef, type ComponentProps } from 'react';
 import { Link } from '@remix-run/react';
 import { motion } from 'framer-motion';
-import { Hero } from '@/features/hero';
+import {
+    AnimatedGradients,
+    SidebarGradient,
+} from '@/features/animatedGradients';
 
 const StyledLink = forwardRef<HTMLAnchorElement, ComponentProps<typeof Link>>(
     (props, ref) => (
@@ -15,13 +18,6 @@ StyledLink.displayName = 'StyledLink';
 
 const MotionLink = motion(StyledLink);
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-    },
-};
-
 const linkVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -30,25 +26,35 @@ const linkVariants = {
 export default function Index() {
     return (
         <main className="container relative min-h-screen">
-            <Hero />
+            <AnimatedGradients />
             <motion.div
-                variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="absolute bottom-10 left-1/2 right-0 z-10 flex w-full -translate-x-1/2 flex-wrap justify-center gap-x-6 gap-y-1 py-5 md:bottom-auto md:left-auto md:top-1/2 md:w-fit md:-translate-y-1/2 md:flex-col md:items-end md:gap-y-6 md:p-0"
+                className={
+                    `fixed bottom-0 left-1/2 right-0 z-10 w-full -translate-x-1/2 rounded-t-xl ` +
+                    `md:bottom-auto md:left-auto md:top-0 md:h-full md:w-fit md:translate-x-0 md:rounded-l-xl md:rounded-t-none`
+                }
             >
-                <MotionLink variants={linkVariants} to="/blog">
-                    <motion.div>Blog</motion.div>
-                </MotionLink>
-                <MotionLink variants={linkVariants} to="/about">
-                    <motion.div layoutId="about-title">About</motion.div>
-                </MotionLink>
-                <MotionLink variants={linkVariants} to="/projects">
-                    <motion.div layoutId="projects">Projects</motion.div>
-                </MotionLink>
-                <MotionLink variants={linkVariants} to="/skills">
-                    <motion.div layoutId="skills">Skills</motion.div>
-                </MotionLink>
+                <div
+                    className={
+                        `flex h-full w-full flex-wrap justify-center gap-x-6 gap-y-1 rounded-t-xl bg-gray-900 bg-opacity-10 bg-clip-padding px-5 py-5 pb-14 backdrop-blur-[150px] backdrop-filter ` +
+                        `md:flex-col md:items-end md:gap-y-6 md:pr-20 2xl:pr-52`
+                    }
+                >
+                    <SidebarGradient />
+                    <MotionLink variants={linkVariants} to="/blog">
+                        <motion.div>Blog</motion.div>
+                    </MotionLink>
+                    <MotionLink variants={linkVariants} to="/about">
+                        <motion.div layoutId="about-title">About</motion.div>
+                    </MotionLink>
+                    <MotionLink variants={linkVariants} to="/projects">
+                        <motion.div layoutId="projects">Projects</motion.div>
+                    </MotionLink>
+                    <MotionLink variants={linkVariants} to="/skills">
+                        <motion.div layoutId="skills">Skills</motion.div>
+                    </MotionLink>
+                </div>
             </motion.div>
         </main>
     );
