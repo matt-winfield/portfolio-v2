@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { projects } from '@/features/content/projects';
+import { TechnologyDisplay } from '@/features/technology';
 import { cn } from '@/utils/misc';
 import { motion } from 'framer-motion';
 import { useState, MouseEvent } from 'react';
@@ -24,7 +25,6 @@ export default function Projects() {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
             className="container flex flex-col gap-5 overflow-hidden md:flex-row"
         >
             <div className="flex overflow-x-auto md:flex-col md:overflow-y-auto md:overflow-x-visible">
@@ -57,16 +57,22 @@ export default function Projects() {
                         <div className="my-2 w-full text-center text-3xl">
                             {project.name}
                         </div>
-                        <div className="my-1 h-60">
-                            <img
-                                className="max-h-full max-w-full"
-                                src={
-                                    project.images.length > 0
-                                        ? `${project.images[0]?.url}`
-                                        : fallbackImageUrl
-                                }
-                                alt={project.images[0]?.altText ?? project.name}
-                            />
+                        <img
+                            className="my-1 max-h-60 max-w-full"
+                            src={
+                                project.images.length > 0
+                                    ? `${project.images[0]?.url}`
+                                    : fallbackImageUrl
+                            }
+                            alt={project.images[0]?.altText ?? project.name}
+                        />
+                        <div className="flex flex-wrap justify-center gap-1">
+                            {project.technologies.map((technology) => (
+                                <TechnologyDisplay
+                                    key={technology.name}
+                                    technology={technology}
+                                />
+                            ))}
                         </div>
                         <div>
                             <project.content />
