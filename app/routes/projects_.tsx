@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { projects } from '@/features/content/projects';
-import { TechnologyDisplay } from '@/features/technology';
+import { TechnologyDisplay } from '@/features/technologyDisplay';
 import { cn } from '@/utils/misc';
 import { motion } from 'framer-motion';
 import { useState, MouseEvent } from 'react';

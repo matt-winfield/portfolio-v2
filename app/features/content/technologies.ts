@@ -13,6 +13,16 @@ import NextJSIcon from '@/icons/nextdotjs.svg?react';
 import HTMLIcon from '@/icons/html5.svg?react';
 import CSSIcon from '@/icons/css3.svg?react';
 import JavaScriptIcon from '@/icons/javascript.svg?react';
+import PostgresIcon from '@/icons/postgresql.svg?react';
+import StyledComponentsIcon from '@/icons/styledcomponents.svg?react';
+import ReduxIcon from '@/icons/redux.svg?react';
+import GitIcon from '@/icons/git.svg?react';
+import ProgressiveWebAppsIcon from '@/icons/pwa.svg?react';
+import AmazonWebServicesIcon from '@/icons/amazonwebservices.svg?react';
+import AzureIcon from '@/icons/microsoftazure.svg?react';
+import MicrosoftIcon from '@/icons/microsoft.svg?react';
+import GithubActionsIcon from '@/icons/githubactions.svg?react';
+
 import { ComponentType, SVGProps } from 'react';
 
 export type Technology = {
@@ -47,7 +57,7 @@ export const angular: Technology = {
 
 export const signalr: Technology = {
     name: 'SignalR',
-    icons: [],
+    icons: [MicrosoftIcon],
 };
 
 export const googleCloud: Technology = {
@@ -90,13 +100,73 @@ export const nextjs: Technology = {
     icons: [NextJSIcon],
 };
 
+export const sql: Technology = {
+    name: 'SQL',
+    icons: [PostgresIcon],
+};
+
+export const postgresql: Technology = {
+    name: 'PostgreSQL',
+    icons: [PostgresIcon],
+};
+
+export const styledComponents: Technology = {
+    name: 'styled-components',
+    icons: [StyledComponentsIcon],
+};
+
+export const redux: Technology = {
+    name: 'Redux',
+    icons: [ReduxIcon],
+};
+
+export const git: Technology = {
+    name: 'Git',
+    icons: [GitIcon],
+};
+
+export const progressiveWebApps: Technology = {
+    name: 'Progressive Web Apps',
+    icons: [ProgressiveWebAppsIcon],
+};
+
+export const amazonWebServices: Technology = {
+    name: 'Amazon Web Services',
+    icons: [AmazonWebServicesIcon],
+};
+
+export const azure: Technology = {
+    name: 'Azure',
+    icons: [AzureIcon],
+};
+
+export const githubActions: Technology = {
+    name: 'GitHub Actions',
+    icons: [GithubActionsIcon],
+};
+
 export const technologies: Technology[] = [
-    react,
     typescript,
+    react,
+    htmlCssJavascript,
     csharp,
-    docker,
+    sql,
+    mysql,
+    postgresql,
+    sqlite,
+    tailwind,
+    styledComponents,
+    prisma,
+    remix,
+    nextjs,
     angular,
+    redux,
+    progressiveWebApps,
     signalr,
     googleCloud,
-    mysql,
+    azure,
+    amazonWebServices,
+    githubActions,
+    git,
+    docker,
 ];
