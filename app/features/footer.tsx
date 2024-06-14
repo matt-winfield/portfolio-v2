@@ -11,12 +11,6 @@ export const Footer = () => {
                 >
                     Privacy Policy
                 </Link>
-                <Link
-                    to="/settings/analytics"
-                    className="transition-colors hover:text-accent-foreground"
-                >
-                    Analytics
-                </Link>
             </div>
             <div className="flex items-center gap-5">
                 <ThemeSwitch />
