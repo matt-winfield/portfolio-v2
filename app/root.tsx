@@ -87,6 +87,11 @@ function Layout({ children }: { children: React.ReactNode }) {
                     name="viewport"
                     content="width=device-width, initial-scale=1"
                 />
+                <script
+                    defer
+                    data-domain="matt-winfield.com"
+                    src="https://plausible.io/js/script.js"
+                ></script>
                 <Meta />
                 <Links />
             </head>
