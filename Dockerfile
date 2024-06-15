@@ -52,7 +52,6 @@ COPY --from=prod-deps --chown=remix:remix /app/node_modules /app/node_modules
 COPY --from=prod-deps --chown=remix:remix /app/package*.json /app/
 COPY --from=builder --chown=remix:remix /app/build /app/build
 COPY --from=builder --chown=remix:remix /app/public /app/public
-# Expose port 3000 for the app
-EXPOSE 3000
+
 # Start the Remix app
 CMD [ "pnpm", "start" ]
