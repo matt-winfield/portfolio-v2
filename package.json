@@ -3,6 +3,7 @@
     "private": true,
     "sideEffects": false,
     "type": "module",
+    "packageManager": "pnpm@8.6.12",
     "scripts": {
         "build": "remix vite:build",
         "dev": "remix vite:dev",
@@ -13,7 +14,7 @@
         "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
         "start": "remix-serve ./build/server/index.js",
         "typecheck": "tsc",
-        "prepare": "husky"
+        "prepare": "node .husky/install.mjs"
     },
     "dependencies": {
         "@mdx-js/react": "^3.0.1",
