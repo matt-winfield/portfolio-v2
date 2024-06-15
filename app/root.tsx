@@ -22,6 +22,8 @@ import { GeneralErrorBoundary } from './components/errorBoundary';
 import { ChevronLeft } from 'lucide-react';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXComponents } from 'mdx/types';
+import { useEffect } from 'react';
+import { posthog } from 'posthog-js';
 
 export const links: LinksFunction = () => {
     return [
@@ -145,7 +147,12 @@ export default function App() {
     const { theme } = useLoaderData<typeof loader>();
     const matches = useMatches();
     const outlet = useOutlet();
+    const location = useLocation();
     const isOnIndexPage = matches.find((m) => m.id === 'routes/index');
+
+    useEffect(() => {
+        posthog.capture('$pageview');
+    }, [location.pathname]);
 
     return (
         <ThemeProvider initialTheme={theme}>
