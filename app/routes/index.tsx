@@ -9,7 +9,7 @@ import {
 const StyledLink = forwardRef<HTMLAnchorElement, ComponentProps<typeof Link>>(
     (props, ref) => (
         <span className="group relative duration-500 hover:scale-125 hover:transition-transform">
-            <Link className="text-xl sm:text-3xl" ref={ref} {...props} />
+            <Link className="text-xl lg:text-3xl" ref={ref} {...props} />
             <motion.div className="absolute -bottom-1 h-[2px] w-full scale-x-0 bg-accent-foreground transition-transform group-hover:scale-x-100" />
         </span>
     ),
