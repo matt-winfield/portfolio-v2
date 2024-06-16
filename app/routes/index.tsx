@@ -25,20 +25,20 @@ const linkVariants = {
 
 export default function Index() {
     return (
-        <main className="container relative min-h-screen">
+        <main className="container relative h-full">
             <AnimatedGradients />
             <motion.div
                 initial="hidden"
                 animate="visible"
                 className={
                     `fixed bottom-0 left-1/2 right-0 z-10 w-full -translate-x-1/2 rounded-t-xl ` +
-                    `md:bottom-auto md:left-auto md:top-0 md:h-full md:w-fit md:translate-x-0 md:rounded-l-xl md:rounded-t-none`
+                    `lg:bottom-auto lg:left-auto lg:top-0 lg:h-full lg:w-fit lg:translate-x-0 lg:rounded-l-xl lg:rounded-t-none`
                 }
             >
                 <div
                     className={
-                        `flex h-full w-full flex-wrap justify-center gap-x-6 gap-y-1 rounded-t-xl bg-gray-900 bg-opacity-10 bg-clip-padding px-5 py-5 pb-14 backdrop-blur-[150px] backdrop-filter ` +
-                        `md:flex-col md:items-end md:gap-y-6 md:pr-20 2xl:pr-52`
+                        `flex h-full w-full flex-wrap justify-center gap-x-6 gap-y-1 rounded-t-xl bg-gray-900 bg-opacity-10 bg-clip-padding px-5 py-5 pb-7 backdrop-blur-[150px] backdrop-filter ` +
+                        `lg:flex-col lg:items-end lg:gap-y-6 lg:pr-20 2xl:pr-52`
                     }
                 >
                     <SidebarGradient />

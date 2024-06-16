@@ -157,9 +157,9 @@ export default function App() {
     return (
         <ThemeProvider initialTheme={theme}>
             <Layout>
-                <div className="flex min-h-screen flex-col justify-between">
+                <div className="flex min-h-full flex-col justify-between">
                     <Header />
-                    <div className="flex-1">{outlet}</div>
+                    <div className="flex-1 basis-[1px]">{outlet}</div>
                     {!isOnIndexPage && <Footer />}
                 </div>
             </Layout>

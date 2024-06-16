@@ -47,9 +47,9 @@ export const AnimatedGradients = () => {
     }, [animate, x1, y1, x2, y2]);
 
     return (
-        <div>
+        <div className="h-full w-full overflow-hidden">
             <motion.div
-                className="fixed left-0 top-0 -z-10 min-h-screen w-full"
+                className="fixed left-0 top-0 -z-10 h-full w-full"
                 ref={scope}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -57,7 +57,7 @@ export const AnimatedGradients = () => {
                     background,
                 }}
             />
-            <div className="container flex min-h-screen items-center justify-center md:justify-start">
+            <div className="container flex h-full items-center justify-center md:justify-start">
                 <div className="flex flex-col items-center md:items-start">
                     <div className="text-center text-5xl font-bold md:text-7xl">
                         Matt Winfield
