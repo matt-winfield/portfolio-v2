@@ -92,7 +92,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                 <script
                     defer
                     data-domain="matt-winfield.com"
-                    src="https://plausible.io/js/script.js"
+                    src="https://pl.matt-winfield.com/js/script.js"
                 ></script>
                 <Meta />
                 <Links />
