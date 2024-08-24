@@ -1,4 +1,4 @@
-Using one translation file per language with all of the translations needed for your app may greatly increase page loading time, as the client needs to download all of the translations, many of which may not be used on the page they are loading. By splitting the translations into multiple "namespaces", we can divide them over several smaller files, and only download the ones we need for the page the user is requesting. Then when the user changes page, we can lazy load any new namespaces that are needed for the new route that they haven't already downloaded before showing the next page.
+Using one translation file per language with all of your app's translations may greatly increase page loading time, as the client needs to download every translation regardless of if they are used on the page being loaded. By splitting the translations into multiple "namespaces", we can divide them over several smaller files, and only download the ones we need for the page the user is requesting. Then when the user changes page, we can lazy load any new namespaces that are needed for the new route that they haven't already downloaded before showing the next page.
 
 We're going to use [remix-18next](https://github.com/sergiodxa/remix-i18next) to handle our translations in this project. As a bonus, we'll set up the project to give us compile-time type safety on our namespaces and translation keys, so we can't accidentally use a namespace/key that doesn't exist (and also give us editor autocompletion!).
 
@@ -13,6 +13,7 @@ We're going to use [remix-18next](https://github.com/sergiodxa/remix-i18next) to
 ## Step 1: Create a new project
 
 If you already have a Remix project, you can skip this step. I'm going to use the [Epic Stack template](https://github.com/epicweb-dev/epic-stack) as a starting point, as it comes with many sensible defaults for configuration, but these steps
+should work with any Remix project.
 
 Create a Remix project using:
 
