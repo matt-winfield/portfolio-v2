@@ -1,9 +1,12 @@
-name: Build and Test
+name: Master
 on:
     push:
         branches: [main, master]
     pull_request:
         branches: [main, master]
+env:
+    REGISTRY: docker.io
+    IMAGE_NAME: matthewwin/portfolio
 jobs:
     build:
         name: Build
@@ -34,6 +37,7 @@ jobs:
     push_to_registry:
         name: Push Docker image to Docker Hub
         runs-on: ubuntu-latest
+        needs: [build, test]
         permissions:
             packages: write
             contents: read
@@ -53,7 +57,7 @@ jobs:
               id: meta
               uses: docker/metadata-action@v5
               with:
-                  images: matthewwin/portfolio
+                  images: ${{ env.IMAGE_NAME }}
 
             - name: Build and push Docker image
               id: push
