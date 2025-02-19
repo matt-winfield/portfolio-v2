@@ -1,10 +1,10 @@
 FROM node:20-slim AS base
 ARG CI=true
 
-# Set up PNPM environment variables and enable Corepack
+# Set up PNPM environment variables and install PNPM
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable pnpm
+RUN npm install -g pnpm@8.6.12
 
 # Stage for installing dependencies
 FROM base AS deps
