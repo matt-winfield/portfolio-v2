@@ -1,3 +1,5 @@
+import { MDXProvider } from '@mdx-js/react';
+import { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
 import {
     Link,
     Links,
@@ -9,21 +11,19 @@ import {
     useMatches,
     useOutlet,
 } from '@remix-run/react';
-import tailwindStylesheetUrl from './styles/tailwind.css?url';
-import fontsStylesheetUrl from './styles/fonts.css?url';
-import { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
-import { cn } from './utils/misc';
-import { NavMenu } from './features/navMenu';
+import { ChevronLeft } from 'lucide-react';
+import { MDXComponents } from 'mdx/types';
+import { posthog } from 'posthog-js';
+import { useEffect } from 'react';
+import { GeneralErrorBoundary } from './components/errorBoundary';
 import { Footer } from './features/footer';
+import { NavMenu } from './features/navMenu';
+import { ThemeProvider, useTheme } from './features/themes/themeProvider';
 import { ThemeSwitch } from './features/themes/themeSwitcher';
 import { getTheme } from './features/themes/themeUtils';
-import { ThemeProvider, useTheme } from './features/themes/themeProvider';
-import { GeneralErrorBoundary } from './components/errorBoundary';
-import { ChevronLeft } from 'lucide-react';
-import { MDXProvider } from '@mdx-js/react';
-import { MDXComponents } from 'mdx/types';
-import { useEffect } from 'react';
-import { posthog } from 'posthog-js';
+import fontsStylesheetUrl from './styles/fonts.css?url';
+import tailwindStylesheetUrl from './styles/tailwind.css?url';
+import { cn } from './utils/misc';
 
 export const links: LinksFunction = () => {
     return [
@@ -43,8 +43,8 @@ export const meta: MetaFunction = () => {
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/heading-has-content */
 const mdxComponents: MDXComponents = {
-    h1: (props) => <h1 className="mb-4 mt-8 text-4xl font-bold" {...props} />,
-    h2: (props) => <h2 className="mb-4 mt-8 text-3xl font-bold" {...props} />,
+    h1: (props) => <h1 className="mb-4 mt-10 text-4xl font-bold" {...props} />,
+    h2: (props) => <h2 className="mb-4 mt-10 text-3xl font-bold" {...props} />,
     h3: (props) => <h3 className="mb-4 mt-8 text-2xl font-bold" {...props} />,
     h4: (props) => <h4 className="mb-3 mt-6 text-xl font-bold" {...props} />,
     h5: (props) => <h5 className="mb-2 mt-6 font-bold" {...props} />,
@@ -57,7 +57,10 @@ const mdxComponents: MDXComponents = {
     ol: (props) => <ol className="list-inside list-decimal pl-10" {...props} />,
     li: (props) => <li className="my-2" {...props} />,
     blockquote: (props) => (
-        <blockquote className="border-l-4 border-gray-300 pl-2" {...props} />
+        <blockquote
+            className="mx-4 my-8 border-l-4 border-gray-300 pl-2"
+            {...props}
+        />
     ),
     pre: (props) => (
         <pre

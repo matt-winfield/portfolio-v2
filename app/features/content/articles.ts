@@ -10,6 +10,15 @@ export type Article = {
 
 export const articles: Article[] = [
     {
+        slug: 'full-stack-testing',
+        title: 'How to approach testing, for a full-stack application',
+        description:
+            'My thoughts on approaches and best practices for testing frontend or full-stack applications.',
+        publishedAt: new Date('2025-08-21'),
+        updatedAt: new Date('2025-08-21'),
+        tags: ['testing', 'frontend', 'full-stack', 'test driven development'],
+    },
+    {
         slug: 'lazy-loading-remix-translations',
         title: 'Lazy Loading Translations in Remix using i18next',
         description:

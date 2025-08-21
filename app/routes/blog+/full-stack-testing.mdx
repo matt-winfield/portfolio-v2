@@ -1,0 +1,106 @@
+Automated testing is an essential part of modern web development, allowing developers to produce code and deploy frequently with confidence.
+As AI tools become more prevalent, and humans are less involved in the writing of code, it becomes even more important to have comprehensive testing in place.
+
+This article will summarise my thoughts on how developers should approach testing, focused on frontend and full-stack applications.
+
+## Tests should reflect the user experience
+
+Tests should be written from the perspective of the user, and know as little about implementation details as possible.
+
+This means that tests should be written in a way that reflects how a user would interact with the application. For example:
+
+-   Click the button with text "OK", then the modal should close
+    -   **NOT** When the button with ID "submit-button" is clicked, then the modal should close
+    -   **NOT** When the button is clicked, then a `closeModal` function is called/action is dispatched
+    -   **NOT** When the button is clicked, then the `modalMock.close` function is called
+
+This approach ensures that tests are resilient to changes in the implementation details - the component can be refactored without having to update the tests.
+
+If you have to mock implementation details, then you are coupling the tests to the implementation, and they will break when the implementation changes.
+
+-   Only network requests, databases, randomness, time, and third-party systems should be mocked.
+-   Do not mock implementation details of your own code, such as functions, components, or classes.
+-   Avoid mocking third-party libraries unless absolutely necessary, as this ties the tests to the specific implementation of that library.
+
+If you have to change tests when you change the implementation, then those tests provide no confidence that your change is safe, and are just a maintenance burden that slows down development.
+
+## Favour integration tests over unit tests
+
+Integration tests are tests that cover multiple components or parts of the application working together, rather than testing a single component or function in isolation.
+
+It's better to write tests for the highest level component possible, than for each individual component and function.
+
+This relates to the previous idea - This allows refactoring without having to update tests.
+
+And if you have low-level pure function tests, whose logic is also covered by tests of a higher level component, then you should delete them - They are only a maintenance burden.
+
+> "Many people freak out at throwing away tests, but you should if they don't buy you anything. If the same thing is tested multiple ways, that's coupling, and coupling costs."
+>
+> _Kent Beck - [https://martinfowler.com/articles/is-tdd-dead/](https://martinfowler.com/articles/is-tdd-dead/)_
+
+## Test run speed is vital
+
+Tests must run quickly, otherwise developers will not run them as part of their workflow.
+
+Running tests for a specific feature or small changes should take seconds on a local machine.
+
+Running the full test suite should take a maximum of 10 minutes.
+
+For this reason, it's important that the majoring of tests are integration or unit tests that do not run with a full browser/server environment.
+
+Save end-to-end tests for critical user journeys.
+
+## Categorising tests by type is not important
+
+It's common to categorise tests by type, such as unit tests, component tests, integration tests, smoke tests, end-to-end tests, etc.
+
+Nobody seems to agree on the exact definition on what is a "unit" vs "component", and how high-level a test can be before it becomes an "integration test".
+
+For example, a test for a React component which renders some other components
+
+-   Some say it's a unit test because it's a single thing that you can construct in one line with a single interface and outputs (The buttons/text within the rendered output).
+-   Some say it's a component test because you're rendering a component and it's not purely logic (there's UI, state, the React framework etc.).
+-   Some say it's an integration test because you are combining multiple components into another system.
+
+I think trying to agree on a name for this is a waste of time. I don't care what label you want to put on this test. It does not change how the test is written, just keep it as user-focused as possible.
+
+## Test stability is critical
+
+Tests should be stable and not flake or fail intermittently. Flaky tests erode trust in the test suite and slow down development.
+
+For end-to-end tests, your entire infrastructure (frontend, APIs and databases) should be able to be deployed in a docker stack, so that the tests always will be consistent.
+
+Any dependencies that cannot be included in the stack (e.g. third party APIs) should be mocked.
+
+-   Consider writing contract tests for those mocked dependencies that assert that they conform to the expected API.
+
+## Use test-driven development (most of the time)
+
+Test-driven development is the process of writing tests before writing the code that implements the feature.
+
+This is a great way to ensure that tests are written from the user's perspective, and that they do not depend on implementation details.
+
+This also ensures high test coverage, as you are writing tests for every feature as you implement it.
+
+### Great use cases for tdd
+
+-   Fixing a bug
+-   Pure functions (mainly utility libraries, or packages/libraries with public API e.g. A/B testing library)
+-   (Well-Defined) UI components with design specifications
+-   API endpoints
+    -   This really extends to anything with clearly defined inputs and outputs - Mock as little as possible (don't mock third party libraries, do mock network requests)
+
+### When not to use TDD
+
+-   Experimental UI components or prototypes
+    -   If there is a rough idea of the feature functionality but we want to play with it, it's impractical to TDD - Writing tests for logic first before writing any UI code may encourage overly complex implementation. In this situation, it's best to experiment with the UI components/flow first (with no-op or very basic logic handlers), then write UI level tests for the logic, then implement the logic. This still achieves the same end result of good test coverage, and high level tests that are not tied to the implementation details.
+-   Exploratory development/Proof of Concept
+    -   TDD forces you to decide on the interface a solution will have upfront - This is not what we want when quickly exploring multiple potential solutions to a problem.
+    -   In this case we do not want to limit our ability to rapidly experiment with different ideas.
+-   Tooling/scripts
+    -   Often there are some helper scripts or tools that are written to help out developers, generate documentation or reports etc. These are often some variation of "read files from file system, extract information, write new files", and due to the heavy filesystem reliance would be overly cumbersome to write tests for, and as long as this is only for internal use/not a production system they would not provide much value. If it has complicated logic I might write tests for those functions, but not the file reading/writing.
+
+### Be careful not to take TDD too far
+
+Some people take the "red-green-refactor" approach too strictly, and write very small tests and then very minimal logic for that test, and don't take the time to consider the bigger picture and flexibility for future changes.
+It's best to write high-level tests that focus on user behaviour and outcomes, rather than individual functions and components.
