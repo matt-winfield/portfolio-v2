@@ -1,11 +1,11 @@
 import { TagList } from '@/features/blog/tagList';
 import { articles } from '@/features/content/articles';
+import syntaxHighlightingStyles from '@/styles/syntax-highlighting.css?url';
 import { cn, useImageFadeIn } from '@/utils/misc';
 import { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
 import { Link, Outlet, useLoaderData } from '@remix-run/react';
 import { format } from 'date-fns';
 import { ChevronLeft } from 'lucide-react';
-import syntaxHighlightingStyles from '@/styles/syntax-highlighting.css?url';
 
 export const links: LinksFunction = () => {
     return [
@@ -38,10 +38,13 @@ const ArticleLayout = () => {
                     <span>Back to blog</span>
                 </Link>
             </div>
-            <div className="my-8 flex flex-col items-center gap-3">
+            <div className="relative my-8 flex flex-col items-center gap-3 pb-2">
                 <h1 className="text-center text-5xl">{article.title}</h1>
                 <div className="flex items-center justify-center">
                     {article.tags && <TagList tags={article.tags} />}
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-px">
+                    <div className="h-full w-full animate-pulse bg-gradient-to-r from-transparent via-accent-foreground to-transparent [animation-duration:4s]"></div>
                 </div>
             </div>
             <div className="flex flex-col items-center">
